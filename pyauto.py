@@ -26,3 +26,6 @@ time.sleep(5)
 driver.switch_to_window(driver.window_handles[1])
 url = driver.current_url
 print(url)
+driver.close()
+driver.switch_to_window(driver.window_handles[0])
+driver.refresh()
