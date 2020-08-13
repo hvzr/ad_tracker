@@ -21,6 +21,10 @@ driver = webdriver.Chrome(chrome_options = chrome_options)
 driver.get("https://www.nytimes.com/")
 driver.maximize_window()
 
+urldict = {
+    "url" : "somethinggoeshere.com" ##not really sure what i'm doing here, ngl
+}
+
 t_end = time.time() + 60 * 3
 while time.time() < t_end:
     time.sleep(10)
