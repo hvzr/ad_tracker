@@ -22,11 +22,9 @@ driver.get("https://www.nytimes.com/")
 driver.maximize_window()
 
 urldict = {}
-num = 0
 
-t_end = time.time() + 60 * 3
+t_end = time.time() + 60 
 while time.time() < t_end:
-    num += 1
     time.sleep(10)
     screenWidth, screenHeight = pyautogui.size()    # Macbook pro 13" is 1440x900
     targetposx = screenWidth/2
@@ -36,15 +34,15 @@ while time.time() < t_end:
     try:
         driver.switch_to_window(driver.window_handles[1])
         url = driver.current_url
-        url = urlsplit(url[1])
-        contains = url in urldict.values()
-        if contains == False:
-            urldict.update( {num : url} )
+        url = urlsplit(url)[1]
+        if url in urldict:
+            urldict[url] += 1
+        else:
+            urldict[url] = 1
         driver.close()
         driver.switch_to_window(driver.window_handles[0])
         driver.refresh()
     except IndexError:
         print("Error")
 
-count = Counter(votes.values())
-print(count)
+print(urldict)
